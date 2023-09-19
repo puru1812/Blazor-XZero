@@ -1,0 +1,148 @@
+﻿@inject XZero.Shared.GameState State
+@code {
+    protected override void OnInitialized()
+    {
+        State.ResetBoard();
+        var cssClass = "turn1";
+        if (State.PlayerTurn == 1)
+            cssClass = "turn2";
+
+        turn = cssClass;
+
+
+    }
+
+
+    private string? boardProperty = "board";
+    private string? boardElementProperty = "container";
+    private string? gameProperty = "visible";
+    private string? resultProperty = "invisible";
+    private string[] Pieces = new string[9];
+    private string turn="turn";
+    private string WinnerText = "";
+    private void RePlay()
+    {
+        State.ResetBoard();
+        var cssClass = "turn1";
+        if (State.PlayerTurn == 1)
+            cssClass = "turn2";
+        boardProperty = "board";
+        boardElementProperty = "container";
+        gameProperty = "visible";
+        resultProperty = "invisible";
+
+        for(int i = 0; i < Pieces.Length; i++)
+        {
+            Pieces[i] = "";
+        }
+    }
+    private void PlayPiece(int col)
+    {
+        int success=State.PlayPiece(col);
+        if (success >= 0)
+        {
+            var cssClass = $"player{State.PlayerTurn}";
+            Pieces[col] = cssClass;
+            cssClass = "turn1";
+            if (State.PlayerTurn == 1)
+                cssClass = "turn2";
+            turn = cssClass;
+            int isWin = State.CheckForWin();
+
+            if (isWin == 2)
+            {
+                WinnerText = "Winner is ";
+                //Player 2 Wins
+                ShowImage(2);
+            }
+            else if (isWin == 0)
+            {
+                WinnerText = "It's a Tie!";
+                imageSource = "transparent.png";
+                ClearGame();
+                //Tie
+            }
+            else if (isWin == 1)
+            {
+                //Player 1 Wins
+                WinnerText = "Winner is ";
+                ShowImage(1);
+            }
+        }
+    }
+    private string? imageSource;
+
+    private void ShowImage(int id)
+    {
+        if(id==1)
+            imageSource = "x.png";
+        else
+            imageSource = "0.png";
+        ClearGame();
+
+    }
+    private void ClearGame()
+    {
+     
+        boardProperty = "invisible";
+        boardElementProperty = "invisible";
+        gameProperty = "invisible";
+        resultProperty = "visible";
+    }
+
+}
+<HeadContent>
+	<style>
+		:root {
+			--board-bg: grey; 	/** the color of the board **/
+		}
+	</style>
+</HeadContent>
+@inherits LayoutComponentBase
+
+<div class="page">
+ 
+
+    <main>
+       
+        <div class="top-row px-4">
+
+            <h1>Let's Play <img class="turn" src="x.png" /> and  <img class="turn" src="0.png" /> !</h1>
+           
+            <div class="@boardProperty">
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(0)">
+                    <img class="@Pieces[0]" /> </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(1)">
+                    <img class="@Pieces[1]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(2)">
+                    <img class="@Pieces[2]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(3)">
+                    <img class="@Pieces[3]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(4)">
+                    <img class="@Pieces[4]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(5)">
+                    <img class="@Pieces[5]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(6)">
+                    <img class="@Pieces[6]" />
+                </span>
+                <span class="@boardElementProperty" @onclick="() =>PlayPiece(7)">
+                    <img class="@Pieces[7]" />
+                </span>
+                    <span class="@boardElementProperty" @onclick="() =>PlayPiece(8)">
+                    <img class="@Pieces[8]" />
+                </span>
+            </div>
+            <br />
+            <div class="@gameProperty"><h3>Player Turn : <img class="@turn" /></h3></div>
+            <div class="@resultProperty">
+                <h3> @WinnerText<img class="turn" src="@imageSource" />  <button class="btn btn-dark" @onclick="() =>RePlay()">Replay</button></h3>
+                
+                </div>
+        </div>
+    </main>
+</div>

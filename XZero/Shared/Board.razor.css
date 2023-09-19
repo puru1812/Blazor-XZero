@@ -1,0 +1,73 @@
+﻿div {
+    position: relative
+}
+
+
+
+    .board {
+        width: 210px;
+        height: 210px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        pointer-events: none;
+    }
+.invisible {
+    display: none;
+    pointer-events: none;
+}
+.visible {
+    display: block;
+    pointer-events: all;
+}
+
+span.container {
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    border: groove;
+    border-color: black;
+    pointer-events: all;
+    cursor: pointer;
+    position: center;
+    display:block;
+}
+
+
+.player1, .player2 {
+    padding-top: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    position: center;
+    display: block;
+}
+
+.player1 {
+    content: url("0.png");
+}
+
+.player2 {
+    content: url("x.png");
+}
+
+.turn {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline
+}
+.turn1 {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline;
+    content: url("0.png");
+}
+.turn2 {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline;
+    content: url("x.png");
+}
+
+

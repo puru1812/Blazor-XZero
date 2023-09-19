@@ -1,0 +1,73 @@
+div[b-sr715nhj6d] {
+    position: relative
+}
+
+
+
+    .board[b-sr715nhj6d] {
+        width: 210px;
+        height: 210px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        pointer-events: none;
+    }
+.invisible[b-sr715nhj6d] {
+    display: none;
+    pointer-events: none;
+}
+.visible[b-sr715nhj6d] {
+    display: block;
+    pointer-events: all;
+}
+
+span.container[b-sr715nhj6d] {
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    border: groove;
+    border-color: black;
+    pointer-events: all;
+    cursor: pointer;
+    position: center;
+    display:block;
+}
+
+
+.player1[b-sr715nhj6d], .player2[b-sr715nhj6d] {
+    padding-top: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    position: center;
+    display: block;
+}
+
+.player1[b-sr715nhj6d] {
+    content: url("0.png");
+}
+
+.player2[b-sr715nhj6d] {
+    content: url("x.png");
+}
+
+.turn[b-sr715nhj6d] {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline
+}
+.turn1[b-sr715nhj6d] {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline;
+    content: url("0.png");
+}
+.turn2[b-sr715nhj6d] {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline;
+    content: url("x.png");
+}
+
+

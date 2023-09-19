@@ -1,0 +1,8 @@
+﻿body {
+}
+.turn {
+    width: 30px;
+    height: 30px;
+    position: center;
+    display: inline
+}
